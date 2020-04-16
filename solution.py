@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow
 import requests
 import sys
 from PyQt5.QtGui import QPixmap
+from PyQt5 import QtCore
 from PyQt5 import uic
 
 
@@ -9,13 +10,26 @@ class Maps(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('kar.ui', self)
-        self.spn = '1.333,1.333'
         self.coords = '41.44326,52.73169'
+        self.mash = 5
         self.izobrazhenie()
+
+    def keyPressEvent(self, event):
+        try:
+            if event.key() == QtCore.Qt.Key_PageUp:
+                if 0 <= int(self.mash) < 18:
+                    self.mash += 1
+                    self.izobrazhenie()
+            if event.key() == QtCore.Qt.Key_PageDown:
+                if 0 < int(self.mash) <= 18:
+                    self.mash -= 1
+                    self.izobrazhenie()
+        except:
+            pass
 
     def izobrazhenie(self):
         url = "http://static-maps.yandex.ru/1.x/"
-        params = {'ll': self.coords, 'spn': self.spn, 'l': 'map'}
+        params = {'ll': self.coords, 'z': f'{self.mash}', 'l': 'map'}
         response = requests.get(url, params=params).content
 
         with open("карта.png", "wb") as file:
