@@ -4,6 +4,7 @@ import sys
 from PyQt5.QtGui import QPixmap
 from PyQt5 import QtCore
 from PyQt5 import uic
+from PyQt5.QtCore import Qt
 
 
 class Maps(QMainWindow):
@@ -14,6 +15,7 @@ class Maps(QMainWindow):
         self.y = 41.44326
         self.mash = 8
         self.mesto = ''
+        self.drug = True
         self.post = False
         self.typ = 'map'
         self.izobrazhenie()
@@ -37,7 +39,10 @@ class Maps(QMainWindow):
         self.izobrazhenie()
 
     def poisk(self):
-        text = self.lineEdit.text()
+        if self.drug:
+            text = self.lineEdit.text()
+        else:
+            text = self.lineEdit_2.text()
         url = 'http://geocode-maps.yandex.ru/1.x/'
         params = {
             'apikey': '40d1649f-0493-4b70-98ba-98533de7710b',
@@ -46,6 +51,7 @@ class Maps(QMainWindow):
         }
         response = requests.get(url, params=params)
         response = response.json()
+        print(response)
         address = response['response']['GeoObjectCollection'][
             'featureMember'][0]['GeoObject']['metaDataProperty'][
             'GeocoderMetaData']['text']
@@ -74,6 +80,40 @@ class Maps(QMainWindow):
     def gibrid(self):
         self.typ = 'sat,skl'
         self.izobrazhenie()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            y_one = event.pos().y()
+            x_one = event.pos().x()
+            if 0 <= x_one < 600 and 0 <= y_one < 450:
+                x = (x_one - 300) * 360 / 2 ** (int(self.mash) + 8)
+                y = (y_one - 225) * 230 / 2 ** (int(self.mash) + 8)
+                self.x = float(self.x) - y
+                self.y = x + float(self.y)
+                self.mesto = f'{self.y},{self.x},pm2rdm'
+                url = 'http://geocode-maps.yandex.ru/1.x/'
+                params = {
+                    'apikey': '40d1649f-0493-4b70-98ba-98533de7710b',
+                    'format': 'json',
+                    'geocode': f'{self.y},{self.x}'
+                }
+                response = requests.get(url, params=params)
+                try:
+                    response = response.json()
+                    address = response['response']['GeoObjectCollection'][
+                        'featureMember'][0]['GeoObject']['metaDataProperty'][
+                        'GeocoderMetaData']['text']
+                    if self.post:
+                        address += '\nПочтовый индекс: '
+                        index = response['response']['GeoObjectCollection']['featureMember'][0][
+                            'GeoObject']['metaDataProperty']['GeocoderMetaData']['Address'][
+                            'postal_code']
+                        address += index
+                    self.lineEdit_2.setText(address)
+                    self.drug = False
+                    self.poisk()
+                except BaseException:
+                    pass
 
     def keyPressEvent(self, event):
         try:
