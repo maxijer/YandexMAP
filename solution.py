@@ -14,6 +14,7 @@ class Maps(QMainWindow):
         self.y = 41.44326
         self.mash = 8
         self.mesto = ''
+        self.post = False
         self.typ = 'map'
         self.izobrazhenie()
         self.shema.clicked.connect(self.map)
@@ -21,6 +22,15 @@ class Maps(QMainWindow):
         self.gibr.clicked.connect(self.gibrid)
         self.isk.clicked.connect(self.poisk)
         self.cl.clicked.connect(self.clear)
+        self.pochta.stateChanged.connect(self.check_index)
+
+    def check_index(self):
+        if not self.post:
+            self.post = True
+            self.poisk()
+        else:
+            self.post = False
+            self.poisk()
 
     def map(self):
         self.typ = 'map'
@@ -39,7 +49,11 @@ class Maps(QMainWindow):
         address = response['response']['GeoObjectCollection'][
             'featureMember'][0]['GeoObject']['metaDataProperty'][
             'GeocoderMetaData']['text']
-        print(address)
+        if self.post:
+            address += '\nПочтовый индекс: '
+            index = response['response']['GeoObjectCollection']['featureMember'][0][
+                'GeoObject']['metaDataProperty']['GeocoderMetaData']['Address']['postal_code']
+            address += index
         self.lineEdit_2.setText(str(address))
         coordination = response['response']['GeoObjectCollection']['featureMember'][0]['GeoObject'][
             'Point']['pos'].split()
