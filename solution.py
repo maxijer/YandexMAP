@@ -12,7 +12,23 @@ class Maps(QMainWindow):
         uic.loadUi('kar.ui', self)
         self.x = 52.73169
         self.y = 41.44326
-        self.mash = 5
+        self.mash = 8
+        self.typ = 'map'
+        self.izobrazhenie()
+        self.shema.clicked.connect(self.map)
+        self.sputn.clicked.connect(self.sput)
+        self.gibr.clicked.connect(self.gibrid)
+
+    def map(self):
+        self.typ = 'map'
+        self.izobrazhenie()
+
+    def sput(self):
+        self.typ = 'sat'
+        self.izobrazhenie()
+
+    def gibrid(self):
+        self.typ = 'sat,skl'
         self.izobrazhenie()
 
     def keyPressEvent(self, event):
@@ -45,7 +61,7 @@ class Maps(QMainWindow):
 
     def izobrazhenie(self):
         url = "http://static-maps.yandex.ru/1.x/"
-        params = {'ll': f'{self.y},{self.x}', 'z': f'{self.mash}', 'l': 'map'}
+        params = {'ll': f'{self.y},{self.x}', 'z': f'{self.mash}', 'l': f'{self.typ}'}
         response = requests.get(url, params=params).content
 
         with open("карта.png", "wb") as file:

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="37395c15-427b-4996-83ff-4b37d1581724" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kar.ui" beforeDir="false" afterPath="$PROJECT_DIR$/kar.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/solution.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/карта.png" beforeDir="false" afterPath="$PROJECT_DIR$/карта.png" afterDir="false" />
     </list>
@@ -24,6 +25,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
     <configuration name="solution" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -81,7 +88,9 @@
       <workItem from="1587009583370" duration="119000" />
       <workItem from="1587009725529" duration="49000" />
       <workItem from="1587009846943" duration="1221000" />
-      <workItem from="1587018655166" duration="567000" />
+      <workItem from="1587018655166" duration="1989000" />
+      <workItem from="1587052677985" duration="319000" />
+      <workItem from="1587053150624" duration="266000" />
     </task>
     <servers />
   </component>
@@ -89,24 +98,28 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1323" height="177" key="GridCell.Tab.0.bottom" timestamp="1587019385623">
-      <screen x="0" y="40" width="1366" height="728" />
+    <state width="1259" height="177" key="GridCell.Tab.0.bottom" timestamp="1587053516644">
+      <screen x="0" y="0" width="1302" height="768" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.bottom/0.40.1366.728@0.40.1366.728" timestamp="1587019385623" />
-    <state width="1323" height="177" key="GridCell.Tab.0.center" timestamp="1587019385623">
-      <screen x="0" y="40" width="1366" height="728" />
+    <state width="1259" height="177" key="GridCell.Tab.0.bottom/0.0.1302.768@0.0.1302.768" timestamp="1587053516644" />
+    <state width="1323" height="177" key="GridCell.Tab.0.bottom/0.40.1366.728@0.40.1366.728" timestamp="1587052997615" />
+    <state width="1259" height="177" key="GridCell.Tab.0.center" timestamp="1587053516644">
+      <screen x="0" y="0" width="1302" height="768" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.center/0.40.1366.728@0.40.1366.728" timestamp="1587019385622" />
-    <state width="1323" height="177" key="GridCell.Tab.0.left" timestamp="1587019385622">
-      <screen x="0" y="40" width="1366" height="728" />
+    <state width="1259" height="177" key="GridCell.Tab.0.center/0.0.1302.768@0.0.1302.768" timestamp="1587053516644" />
+    <state width="1323" height="177" key="GridCell.Tab.0.center/0.40.1366.728@0.40.1366.728" timestamp="1587052997615" />
+    <state width="1259" height="177" key="GridCell.Tab.0.left" timestamp="1587053516644">
+      <screen x="0" y="0" width="1302" height="768" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.left/0.40.1366.728@0.40.1366.728" timestamp="1587019385622" />
-    <state width="1323" height="177" key="GridCell.Tab.0.right" timestamp="1587019385623">
-      <screen x="0" y="40" width="1366" height="728" />
+    <state width="1259" height="177" key="GridCell.Tab.0.left/0.0.1302.768@0.0.1302.768" timestamp="1587053516644" />
+    <state width="1323" height="177" key="GridCell.Tab.0.left/0.40.1366.728@0.40.1366.728" timestamp="1587052997615" />
+    <state width="1259" height="177" key="GridCell.Tab.0.right" timestamp="1587053516644">
+      <screen x="0" y="0" width="1302" height="768" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.right/0.40.1366.728@0.40.1366.728" timestamp="1587019385623" />
+    <state width="1259" height="177" key="GridCell.Tab.0.right/0.0.1302.768@0.0.1302.768" timestamp="1587053516644" />
+    <state width="1323" height="177" key="GridCell.Tab.0.right/0.40.1366.728@0.40.1366.728" timestamp="1587052997615" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Map$solution.coverage" NAME="solution Coverage Results" MODIFIED="1587019385608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Map$solution.coverage" NAME="solution Coverage Results" MODIFIED="1587053516622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
