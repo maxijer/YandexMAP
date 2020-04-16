@@ -36,6 +36,11 @@ class Maps(QMainWindow):
         }
         response = requests.get(url, params=params)
         response = response.json()
+        address = response['response']['GeoObjectCollection'][
+            'featureMember'][0]['GeoObject']['metaDataProperty'][
+            'GeocoderMetaData']['text']
+        print(address)
+        self.lineEdit_2.setText(str(address))
         coordination = response['response']['GeoObjectCollection']['featureMember'][0]['GeoObject'][
             'Point']['pos'].split()
         self.x = coordination[1]
