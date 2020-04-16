@@ -20,6 +20,7 @@ class Maps(QMainWindow):
         self.sputn.clicked.connect(self.sput)
         self.gibr.clicked.connect(self.gibrid)
         self.isk.clicked.connect(self.poisk)
+        self.cl.clicked.connect(self.clear)
 
     def map(self):
         self.typ = 'map'
@@ -40,6 +41,11 @@ class Maps(QMainWindow):
         self.x = coordination[1]
         self.y = coordination[0]
         self.mesto = f'{self.y},{self.x},pm2rdm'
+        self.izobrazhenie()
+
+    def clear(self):
+        self.mesto = ''
+        self.lineEdit.clear()
         self.izobrazhenie()
 
     def sput(self):
