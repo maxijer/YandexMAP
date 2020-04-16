@@ -10,7 +10,8 @@ class Maps(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('kar.ui', self)
-        self.coords = '41.44326,52.73169'
+        self.x = 52.73169
+        self.y = 41.44326
         self.mash = 5
         self.izobrazhenie()
 
@@ -26,10 +27,25 @@ class Maps(QMainWindow):
                     self.izobrazhenie()
         except:
             pass
+        if event.key() == QtCore.Qt.Key_Up:
+            self.x += 0.05
+            self.izobrazhenie()
+
+        if event.key() == QtCore.Qt.Key_Down:
+            self.x -= 0.05
+            self.izobrazhenie()
+
+        if event.key() == QtCore.Qt.Key_Left:
+            self.y -= 0.05
+            self.izobrazhenie()
+
+        if event.key() == QtCore.Qt.Key_Right:
+            self.y += 0.05
+            self.izobrazhenie()
 
     def izobrazhenie(self):
         url = "http://static-maps.yandex.ru/1.x/"
-        params = {'ll': self.coords, 'z': f'{self.mash}', 'l': 'map'}
+        params = {'ll': f'{self.y},{self.x}', 'z': f'{self.mash}', 'l': 'map'}
         response = requests.get(url, params=params).content
 
         with open("карта.png", "wb") as file:
