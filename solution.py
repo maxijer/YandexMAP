@@ -13,14 +13,33 @@ class Maps(QMainWindow):
         self.x = 52.73169
         self.y = 41.44326
         self.mash = 8
+        self.mesto = ''
         self.typ = 'map'
         self.izobrazhenie()
         self.shema.clicked.connect(self.map)
         self.sputn.clicked.connect(self.sput)
         self.gibr.clicked.connect(self.gibrid)
+        self.isk.clicked.connect(self.poisk)
 
     def map(self):
         self.typ = 'map'
+        self.izobrazhenie()
+
+    def poisk(self):
+        text = self.lineEdit.text()
+        url = 'http://geocode-maps.yandex.ru/1.x/'
+        params = {
+            'apikey': '40d1649f-0493-4b70-98ba-98533de7710b',
+            'geocode': f'{text}',
+            'format': 'json'
+        }
+        response = requests.get(url, params=params)
+        response = response.json()
+        coordination = response['response']['GeoObjectCollection']['featureMember'][0]['GeoObject'][
+            'Point']['pos'].split()
+        self.x = coordination[1]
+        self.y = coordination[0]
+        self.mesto = f'{self.y},{self.x},pm2rdm'
         self.izobrazhenie()
 
     def sput(self):
@@ -61,7 +80,8 @@ class Maps(QMainWindow):
 
     def izobrazhenie(self):
         url = "http://static-maps.yandex.ru/1.x/"
-        params = {'ll': f'{self.y},{self.x}', 'z': f'{self.mash}', 'l': f'{self.typ}'}
+        params = {'ll': f'{self.y},{self.x}', 'z': f'{self.mash}', 'l': f'{self.typ}',
+                  'pt': self.mesto}
         response = requests.get(url, params=params).content
 
         with open("карта.png", "wb") as file:
