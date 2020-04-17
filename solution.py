@@ -19,6 +19,7 @@ class Maps(QMainWindow):
         self.post = False
         self.typ = 'map'
         self.izobrazhenie()
+        self.label_1.setFocus()
         self.shema.clicked.connect(self.map)
         self.sputn.clicked.connect(self.sput)
         self.gibr.clicked.connect(self.gibrid)
@@ -51,22 +52,24 @@ class Maps(QMainWindow):
         }
         response = requests.get(url, params=params)
         response = response.json()
-        print(response)
-        address = response['response']['GeoObjectCollection'][
-            'featureMember'][0]['GeoObject']['metaDataProperty'][
-            'GeocoderMetaData']['text']
-        if self.post:
-            address += '\nПочтовый индекс: '
-            index = response['response']['GeoObjectCollection']['featureMember'][0][
-                'GeoObject']['metaDataProperty']['GeocoderMetaData']['Address']['postal_code']
-            address += index
-        self.lineEdit_2.setText(str(address))
-        coordination = response['response']['GeoObjectCollection']['featureMember'][0]['GeoObject'][
-            'Point']['pos'].split()
-        self.x = coordination[1]
-        self.y = coordination[0]
-        self.mesto = f'{self.y},{self.x},pm2rdm'
-        self.izobrazhenie()
+        try:
+            address = response['response']['GeoObjectCollection'][
+                'featureMember'][0]['GeoObject']['metaDataProperty'][
+                'GeocoderMetaData']['text']
+            if self.post:
+                address += '\nПочтовый индекс: '
+                index = response['response']['GeoObjectCollection']['featureMember'][0][
+                    'GeoObject']['metaDataProperty']['GeocoderMetaData']['Address']['postal_code']
+                address += index
+            self.lineEdit_2.setText(str(address))
+            coordination = response['response']['GeoObjectCollection']['featureMember'][0]['GeoObject'][
+                'Point']['pos'].split()
+            self.x = coordination[1]
+            self.y = coordination[0]
+            self.mesto = f'{self.y},{self.x},pm2rdm'
+            self.izobrazhenie()
+        except:
+            pass
 
     def clear(self):
         self.mesto = ''
@@ -103,15 +106,20 @@ class Maps(QMainWindow):
                     address = response['response']['GeoObjectCollection'][
                         'featureMember'][0]['GeoObject']['metaDataProperty'][
                         'GeocoderMetaData']['text']
-                    if self.post:
-                        address += '\nПочтовый индекс: '
-                        index = response['response']['GeoObjectCollection']['featureMember'][0][
-                            'GeoObject']['metaDataProperty']['GeocoderMetaData']['Address'][
-                            'postal_code']
-                        address += index
-                    self.lineEdit_2.setText(address)
-                    self.drug = False
-                    self.poisk()
+                    try:
+                        if self.post:
+                            address += '\nПочтовый индекс: '
+                            index = response['response']['GeoObjectCollection']['featureMember'][0][
+                                'GeoObject']['metaDataProperty']['GeocoderMetaData']['Address'][
+                                'postal_code']
+                            address += index
+                        self.lineEdit_2.setText(address)
+                        self.drug = False
+                        self.poisk()
+                    except:
+                        self.lineEdit_2.setText(address)
+                        self.drug = False
+                        self.poisk()
                 except BaseException:
                     pass
 
