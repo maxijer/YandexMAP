@@ -157,13 +157,16 @@ class Maps(QMainWindow):
         params = {'ll': f'{self.y},{self.x}', 'z': f'{self.mash}', 'l': f'{self.typ}',
                   'pt': self.mesto}
         response = requests.get(url, params=params).content
-
-        with open("карта.png", "wb") as file:
+        if self.typ != 'map':
+            one = "карта.jpg"
+        else:
+            one = "карта.png"
+        with open(one, "wb") as file:
             file.write(response)
-        self.ret_kar()
+        self.ret_kar(one)
 
-    def ret_kar(self):
-        self.pix = QPixmap("карта.png")
+    def ret_kar(self, chto):
+        self.pix = QPixmap(chto)
         self.label_1.setPixmap(self.pix)
 
 
