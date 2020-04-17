@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1037</width>
+    <width>1084</width>
     <height>700</height>
    </rect>
   </property>
@@ -143,13 +143,26 @@
      <string>Почтовый индекс</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>646</x>
+      <y>212</y>
+      <width>421</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1037</width>
+     <width>1084</width>
      <height>21</height>
     </rect>
    </property>
