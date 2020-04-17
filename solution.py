@@ -176,8 +176,6 @@ class Maps(QMainWindow):
                         pass
                 try:
                     address = blizko['properties']['name']
-                    print(address)
-                    print(blizko['properties']['description'])
                     self.lineEdit_2.setText(blizko['properties']['description'])
                     self.label.setText(address)
                     self.y, self.x = blizko['geometry']['coordinates']
