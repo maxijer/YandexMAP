@@ -64,10 +64,11 @@ class Maps(QMainWindow):
             self.lineEdit_2.setText(str(address))
             coordination = response['response']['GeoObjectCollection']['featureMember'][0]['GeoObject'][
                 'Point']['pos'].split()
-            self.x = coordination[1]
-            self.y = coordination[0]
+            self.x = float(coordination[1])
+            self.y = float(coordination[0])
             self.mesto = f'{self.y},{self.x},pm2rdm'
             self.izobrazhenie()
+            self.label_1.setFocus()
         except:
             pass
 
