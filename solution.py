@@ -219,19 +219,19 @@ class Maps(QMainWindow):
         except:
             pass
         if event.key() == QtCore.Qt.Key_Up:
-            self.x += 0.05
+            self.x += self.mash / 2 ** self.mash
             self.izobrazhenie()
 
         if event.key() == QtCore.Qt.Key_Down:
-            self.x -= 0.05
+            self.x -= self.mash / 2 ** self.mash
             self.izobrazhenie()
 
         if event.key() == QtCore.Qt.Key_Left:
-            self.y -= 0.05
+            self.y -= self.mash / 2 ** self.mash
             self.izobrazhenie()
 
         if event.key() == QtCore.Qt.Key_Right:
-            self.y += 0.05
+            self.y += self.mash / 2 ** self.mash
             self.izobrazhenie()
 
     def izobrazhenie(self):
